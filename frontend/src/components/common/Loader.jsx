@@ -5,5 +5,5 @@ export default function Loader() {
         <div className="h-12 w-12 border-4 border-gray-600 border-t-accent rounded-full"></div>
       </div>
     </div>
-  )
+  );
 }

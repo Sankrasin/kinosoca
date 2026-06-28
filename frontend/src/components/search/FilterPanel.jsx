@@ -1,44 +1,44 @@
-import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 export default function FilterPanel({ onFilterChange, providers = [] }) {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(false);
   const [filters, setFilters] = useState({
-    genre: '',
-    actor: '',
-    country: '',
-    language: '',
-    year: '',
-    minRating: '',
-    provider: '',
-  })
+    genre: "",
+    actor: "",
+    country: "",
+    language: "",
+    year: "",
+    minRating: "",
+    provider: "",
+  });
 
   const handleChange = (key, value) => {
-    setFilters({ ...filters, [key]: value })
-  }
+    setFilters({ ...filters, [key]: value });
+  };
 
   const handleApply = () => {
-    onFilterChange(filters)
-  }
+    onFilterChange(filters);
+  };
 
   const handleClear = () => {
     const emptyFilters = {
-      genre: '',
-      actor: '',
-      country: '',
-      language: '',
-      year: '',
-      minRating: '',
-      provider: '',
-    }
-    setFilters(emptyFilters)
-    onFilterChange(emptyFilters)
-  }
+      genre: "",
+      actor: "",
+      country: "",
+      language: "",
+      year: "",
+      minRating: "",
+      provider: "",
+    };
+    setFilters(emptyFilters);
+    onFilterChange(emptyFilters);
+  };
 
   return (
     <div className="glass p-5 rounded-2xl mb-8 shadow-lg border border-white/10 relative overflow-hidden group transition-all duration-300">
       <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl -mr-32 -mt-32 transition-colors group-hover:bg-accent/10" />
-      
+
       <button
         onClick={() => setExpanded(!expanded)}
         className="w-full flex items-center justify-between font-heading font-bold text-lg text-white hover:text-accent transition-colors relative z-10"
@@ -47,17 +47,22 @@ export default function FilterPanel({ onFilterChange, providers = [] }) {
           <span className="w-1 h-5 bg-accent rounded-full inline-block"></span>
           Advanced Filters
         </span>
-        <ChevronDown size={22} className={`transition-transform duration-300 text-gray-400 ${expanded ? 'rotate-180 text-accent' : ''}`} />
+        <ChevronDown
+          size={22}
+          className={`transition-transform duration-300 text-gray-400 ${expanded ? "rotate-180 text-accent" : ""}`}
+        />
       </button>
 
       {expanded && (
         <div className="mt-6 relative z-10 animate-slide-up">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
-              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">Genre</label>
+              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">
+                Genre
+              </label>
               <select
                 value={filters.genre}
-                onChange={(e) => handleChange('genre', e.target.value)}
+                onChange={(e) => handleChange("genre", e.target.value)}
                 className="w-full px-4 py-3 bg-secondary border border-white/10 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/50 transition-all duration-300 shadow-inner appearance-none"
               >
                 <option value="">Any Genre</option>
@@ -83,10 +88,12 @@ export default function FilterPanel({ onFilterChange, providers = [] }) {
             </div>
 
             <div>
-              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">Actor / Actress</label>
+              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">
+                Actor / Actress
+              </label>
               <select
                 value={filters.actor}
-                onChange={(e) => handleChange('actor', e.target.value)}
+                onChange={(e) => handleChange("actor", e.target.value)}
                 className="w-full px-4 py-3 bg-secondary border border-white/10 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/50 transition-all duration-300 shadow-inner appearance-none"
               >
                 <option value="">Any Actor</option>
@@ -106,10 +113,12 @@ export default function FilterPanel({ onFilterChange, providers = [] }) {
             </div>
 
             <div>
-              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">Country</label>
+              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">
+                Country
+              </label>
               <select
                 value={filters.country}
-                onChange={(e) => handleChange('country', e.target.value)}
+                onChange={(e) => handleChange("country", e.target.value)}
                 className="w-full px-4 py-3 bg-secondary border border-white/10 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/50 transition-all duration-300 shadow-inner appearance-none"
               >
                 <option value="">Any Country</option>
@@ -128,10 +137,12 @@ export default function FilterPanel({ onFilterChange, providers = [] }) {
             </div>
 
             <div>
-              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">Language</label>
+              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">
+                Language
+              </label>
               <select
                 value={filters.language}
-                onChange={(e) => handleChange('language', e.target.value)}
+                onChange={(e) => handleChange("language", e.target.value)}
                 className="w-full px-4 py-3 bg-secondary border border-white/10 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/50 transition-all duration-300 shadow-inner appearance-none"
               >
                 <option value="">Any Language</option>
@@ -150,29 +161,33 @@ export default function FilterPanel({ onFilterChange, providers = [] }) {
             </div>
 
             <div>
-              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">Release Year</label>
+              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">
+                Release Year
+              </label>
               <select
                 value={filters.year}
-                onChange={(e) => handleChange('year', e.target.value)}
+                onChange={(e) => handleChange("year", e.target.value)}
                 className="w-full px-4 py-3 bg-secondary border border-white/10 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/50 transition-all duration-300 shadow-inner appearance-none"
               >
                 <option value="">Any Year</option>
                 {[...Array(30)].map((_, i) => {
-                  const year = new Date().getFullYear() - i
+                  const year = new Date().getFullYear() - i;
                   return (
                     <option key={year} value={year}>
                       {year}
                     </option>
-                  )
+                  );
                 })}
               </select>
             </div>
 
             <div>
-              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">Min Rating</label>
+              <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">
+                Min Rating
+              </label>
               <select
                 value={filters.minRating}
-                onChange={(e) => handleChange('minRating', e.target.value)}
+                onChange={(e) => handleChange("minRating", e.target.value)}
                 className="w-full px-4 py-3 bg-secondary border border-white/10 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/50 transition-all duration-300 shadow-inner appearance-none"
               >
                 <option value="">Any Rating</option>
@@ -187,10 +202,12 @@ export default function FilterPanel({ onFilterChange, providers = [] }) {
 
             {providers.length > 0 && (
               <div>
-                <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">Provider</label>
+                <label className="block text-xs font-bold tracking-wider uppercase text-gray-400 mb-2 ml-1">
+                  Provider
+                </label>
                 <select
                   value={filters.provider}
-                  onChange={(e) => handleChange('provider', e.target.value)}
+                  onChange={(e) => handleChange("provider", e.target.value)}
                   className="w-full px-4 py-3 bg-secondary border border-white/10 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/50 transition-all duration-300 shadow-inner appearance-none"
                 >
                   <option value="">Any Provider</option>
@@ -203,23 +220,17 @@ export default function FilterPanel({ onFilterChange, providers = [] }) {
               </div>
             )}
           </div>
-          
+
           <div className="flex gap-4 mt-8 pt-6 border-t border-white/10 justify-end">
-             <button
-                onClick={handleClear}
-                className="btn-secondary h-12"
-              >
-                Clear
-              </button>
-              <button
-                onClick={handleApply}
-                className="btn-primary h-12"
-              >
-                Apply Filters
-              </button>
+            <button onClick={handleClear} className="btn-secondary h-12">
+              Clear
+            </button>
+            <button onClick={handleApply} className="btn-primary h-12">
+              Apply Filters
+            </button>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }

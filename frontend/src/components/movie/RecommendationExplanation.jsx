@@ -1,8 +1,11 @@
-import { Lightbulb } from 'lucide-react'
+import { Lightbulb } from "lucide-react";
 
-export default function RecommendationExplanation({ reasons, similarityScore }) {
+export default function RecommendationExplanation({
+  reasons,
+  similarityScore,
+}) {
   if (!reasons || reasons.length === 0) {
-    return null
+    return null;
   }
 
   return (
@@ -10,7 +13,9 @@ export default function RecommendationExplanation({ reasons, similarityScore }) 
       <div className="flex items-start gap-2">
         <Lightbulb size={18} className="text-yellow-400 flex-shrink-0 mt-0.5" />
         <div className="flex-1">
-          <p className="text-sm font-semibold text-gray-100 mb-2">Recommended because:</p>
+          <p className="text-sm font-semibold text-gray-100 mb-2">
+            Recommended because:
+          </p>
           <ul className="text-sm text-gray-300 space-y-1">
             {reasons.map((reason, index) => (
               <li key={index} className="flex items-start gap-2">
@@ -27,5 +32,5 @@ export default function RecommendationExplanation({ reasons, similarityScore }) 
         </div>
       </div>
     </div>
-  )
+  );
 }

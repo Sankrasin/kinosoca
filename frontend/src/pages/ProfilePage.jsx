@@ -1,50 +1,52 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { LogOut } from 'lucide-react'
-import Loader from '../components/common/Loader'
-import { useAuth } from '../hooks/useAuth'
-import { watchlistApi } from '../api/watchlistApi'
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { LogOut } from "lucide-react";
+import Loader from "../components/common/Loader";
+import { useAuth } from "../hooks/useAuth";
+import { watchlistApi } from "../api/watchlistApi";
 
 export default function ProfilePage() {
-  const { user, logout } = useAuth()
-  const navigate = useNavigate()
-  const [stats, setStats] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadStats()
-  }, [])
+    loadStats();
+  }, []);
 
   const loadStats = async () => {
     try {
-      setLoading(true)
-      const response = await watchlistApi.getWatchlist()
-      const watchlist = response.data.items || []
+      setLoading(true);
+      const response = await watchlistApi.getWatchlist();
+      const watchlist = response.data.items || [];
 
-      const saved = watchlist.filter((item) => item.status === 'saved').length
-      const watched = watchlist.filter((item) => item.status === 'watched').length
+      const saved = watchlist.filter((item) => item.status === "saved").length;
+      const watched = watchlist.filter(
+        (item) => item.status === "watched",
+      ).length;
 
-      const genres = {}
-      const actors = {}
+      const genres = {};
+      const actors = {};
 
       watchlist.forEach((item) => {
         item.movie.genres?.forEach((genre) => {
-          genres[genre.name] = (genres[genre.name] || 0) + 1
-        })
+          genres[genre.name] = (genres[genre.name] || 0) + 1;
+        });
         item.movie.cast?.slice(0, 5).forEach((actor) => {
-          actors[actor.name] = (actors[actor.name] || 0) + 1
-        })
-      })
+          actors[actor.name] = (actors[actor.name] || 0) + 1;
+        });
+      });
 
       const topGenres = Object.entries(genres)
         .sort(([, a], [, b]) => b - a)
         .slice(0, 5)
-        .map(([name, count]) => ({ name, count }))
+        .map(([name, count]) => ({ name, count }));
 
       const topActors = Object.entries(actors)
         .sort(([, a], [, b]) => b - a)
         .slice(0, 5)
-        .map(([name, count]) => ({ name, count }))
+        .map(([name, count]) => ({ name, count }));
 
       setStats({
         saved,
@@ -52,21 +54,21 @@ export default function ProfilePage() {
         total: watchlist.length,
         topGenres,
         topActors,
-      })
+      });
     } catch (error) {
-      console.error('Failed to load stats:', error)
+      console.error("Failed to load stats:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleLogout = () => {
-    logout()
-    navigate('/')
-  }
+    logout();
+    navigate("/");
+  };
 
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
@@ -89,7 +91,9 @@ export default function ProfilePage() {
         <h2 className="text-2xl font-bold text-gray-100 mb-4">Account Info</h2>
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-gray-400">Username</label>
+            <label className="text-sm font-medium text-gray-400">
+              Username
+            </label>
             <p className="text-lg text-gray-100">{user?.username}</p>
           </div>
           <div>
@@ -97,11 +101,13 @@ export default function ProfilePage() {
             <p className="text-lg text-gray-100">{user?.email}</p>
           </div>
           <div>
-            <label className="text-sm font-medium text-gray-400">Member Since</label>
+            <label className="text-sm font-medium text-gray-400">
+              Member Since
+            </label>
             <p className="text-lg text-gray-100">
               {user?.created_at
                 ? new Date(user.created_at).toLocaleDateString()
-                : 'Unknown'}
+                : "Unknown"}
             </p>
           </div>
         </div>
@@ -111,27 +117,40 @@ export default function ProfilePage() {
         <>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="card p-6 text-center">
-              <p className="text-4xl font-bold text-accent mb-2">{stats.total}</p>
+              <p className="text-4xl font-bold text-accent mb-2">
+                {stats.total}
+              </p>
               <p className="text-gray-400">Movies in Watchlist</p>
             </div>
             <div className="card p-6 text-center">
-              <p className="text-4xl font-bold text-accent mb-2">{stats.saved}</p>
+              <p className="text-4xl font-bold text-accent mb-2">
+                {stats.saved}
+              </p>
               <p className="text-gray-400">To Watch</p>
             </div>
             <div className="card p-6 text-center">
-              <p className="text-4xl font-bold text-accent mb-2">{stats.watched}</p>
+              <p className="text-4xl font-bold text-accent mb-2">
+                {stats.watched}
+              </p>
               <p className="text-gray-400">Already Watched</p>
             </div>
           </div>
 
           {stats.topGenres.length > 0 && (
             <div className="card p-6">
-              <h3 className="text-2xl font-bold text-gray-100 mb-4">Favorite Genres</h3>
+              <h3 className="text-2xl font-bold text-gray-100 mb-4">
+                Favorite Genres
+              </h3>
               <div className="space-y-3">
                 {stats.topGenres.map((genre) => (
-                  <div key={genre.name} className="flex items-center justify-between">
+                  <div
+                    key={genre.name}
+                    className="flex items-center justify-between"
+                  >
                     <span className="text-gray-300">{genre.name}</span>
-                    <span className="text-accent font-semibold">{genre.count}</span>
+                    <span className="text-accent font-semibold">
+                      {genre.count}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -140,12 +159,19 @@ export default function ProfilePage() {
 
           {stats.topActors.length > 0 && (
             <div className="card p-6">
-              <h3 className="text-2xl font-bold text-gray-100 mb-4">Favorite Actors</h3>
+              <h3 className="text-2xl font-bold text-gray-100 mb-4">
+                Favorite Actors
+              </h3>
               <div className="space-y-3">
                 {stats.topActors.map((actor) => (
-                  <div key={actor.name} className="flex items-center justify-between">
+                  <div
+                    key={actor.name}
+                    className="flex items-center justify-between"
+                  >
                     <span className="text-gray-300">{actor.name}</span>
-                    <span className="text-accent font-semibold">{actor.count}</span>
+                    <span className="text-accent font-semibold">
+                      {actor.count}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -154,5 +180,5 @@ export default function ProfilePage() {
         </>
       )}
     </div>
-  )
+  );
 }

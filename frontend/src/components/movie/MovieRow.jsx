@@ -1,11 +1,11 @@
-import { useRef } from 'react'
-import MovieCard from './MovieCard'
+import { useRef } from "react";
+import MovieCard from "./MovieCard";
 
 export default function MovieRow({ title, movies }) {
-  const scrollRef = useRef(null)
+  const scrollRef = useRef(null);
 
   if (!movies || movies.length === 0) {
-    return null
+    return null;
   }
 
   return (
@@ -15,7 +15,7 @@ export default function MovieRow({ title, movies }) {
         <div
           ref={scrollRef}
           className="flex gap-4 overflow-x-auto scrollbar-hide"
-          style={{ scrollBehavior: 'smooth' }}
+          style={{ scrollBehavior: "smooth" }}
         >
           {movies.map((movie) => (
             <div key={movie.id} className="flex-shrink-0 w-48">
@@ -25,5 +25,5 @@ export default function MovieRow({ title, movies }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,13 +1,13 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Pagination({ page, totalPages, onPageChange }) {
   const handlePrev = () => {
-    if (page > 1) onPageChange(page - 1)
-  }
+    if (page > 1) onPageChange(page - 1);
+  };
 
   const handleNext = () => {
-    if (page < totalPages) onPageChange(page + 1)
-  }
+    if (page < totalPages) onPageChange(page + 1);
+  };
 
   return (
     <div className="flex items-center justify-center gap-4 my-8">
@@ -31,5 +31,5 @@ export default function Pagination({ page, totalPages, onPageChange }) {
         <ChevronRight size={20} />
       </button>
     </div>
-  )
+  );
 }

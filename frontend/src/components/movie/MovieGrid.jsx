@@ -1,4 +1,4 @@
-import MovieCard from './MovieCard'
+import MovieCard from "./MovieCard";
 
 export default function MovieGrid({ movies, loading = false }) {
   if (loading) {
@@ -14,7 +14,7 @@ export default function MovieGrid({ movies, loading = false }) {
           </div>
         ))}
       </div>
-    )
+    );
   }
 
   if (!movies || movies.length === 0) {
@@ -22,7 +22,7 @@ export default function MovieGrid({ movies, loading = false }) {
       <div className="text-center py-12">
         <p className="text-gray-400 text-lg">No movies found.</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -33,5 +33,5 @@ export default function MovieGrid({ movies, loading = false }) {
         </div>
       ))}
     </div>
-  )
+  );
 }

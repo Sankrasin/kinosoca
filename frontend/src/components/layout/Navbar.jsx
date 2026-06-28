@@ -1,23 +1,26 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Menu, X, LogOut, User } from 'lucide-react'
-import { useAuth } from '../../hooks/useAuth'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, X, LogOut, User } from "lucide-react";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Navbar() {
-  const { user, logout } = useAuth()
-  const [menuOpen, setMenuOpen] = useState(false)
-  const navigate = useNavigate()
+  const { user, logout } = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout()
-    navigate('/')
-    setMenuOpen(false)
-  }
+    logout();
+    navigate("/");
+    setMenuOpen(false);
+  };
 
   return (
     <nav className="fixed w-full top-0 z-50 glass bg-primary/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="text-3xl font-heading font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:from-accent hover:to-blue-500 transition-all duration-300">
+        <Link
+          to="/"
+          className="text-3xl font-heading font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:from-accent hover:to-blue-500 transition-all duration-300"
+        >
           KINOSOCA
         </Link>
 
@@ -30,7 +33,9 @@ export default function Navbar() {
 
         <div
           className={`${
-            menuOpen ? 'absolute top-[72px] left-0 right-0 glass border-b border-white/10 p-6' : 'hidden'
+            menuOpen
+              ? "absolute top-[72px] left-0 right-0 glass border-b border-white/10 p-6"
+              : "hidden"
           } md:flex md:static md:gap-8 md:items-center flex-col md:flex-row md:p-0 bg-primary md:bg-transparent`}
         >
           <Link
@@ -105,5 +110,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

@@ -1,24 +1,24 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 export default function MoodCard({ mood }) {
   const moodEmojis = {
-    Happy: '😊',
-    Emotional: '😢',
-    Romantic: '💕',
-    'Mind-Bending': '🤯',
-    'Dark Thriller': '🌑',
-    Inspirational: '🚀',
-    'Feel-Good': '🌟',
-    'Action-Packed': '💥',
-    Motivational: '💪',
-  }
+    Happy: "😊",
+    Emotional: "😢",
+    Romantic: "💕",
+    "Mind-Bending": "🤯",
+    "Dark Thriller": "🌑",
+    Inspirational: "🚀",
+    "Feel-Good": "🌟",
+    "Action-Packed": "💥",
+    Motivational: "💪",
+  };
 
-  const emoji = moodEmojis[mood.name] || '🎬'
-  const navigate = useNavigate()
+  const emoji = moodEmojis[mood.name] || "🎬";
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/moods?mood=${encodeURIComponent(mood.name)}`)
-  }
+    navigate(`/moods?mood=${encodeURIComponent(mood.name)}`);
+  };
 
   return (
     <div onClick={handleClick}>
@@ -29,5 +29,5 @@ export default function MoodCard({ mood }) {
         </h3>
       </div>
     </div>
-  )
+  );
 }

@@ -1,5 +1,5 @@
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-primary border-t border-secondary mt-12">
@@ -8,7 +8,8 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold text-accent mb-4">Kinosoca</h3>
             <p className="text-gray-400">
-              Discover movies, find where to stream, and get AI-powered recommendations.
+              Discover movies, find where to stream, and get AI-powered
+              recommendations.
             </p>
           </div>
 
@@ -21,12 +22,18 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/search" className="hover:text-accent transition-colors">
+                <a
+                  href="/search"
+                  className="hover:text-accent transition-colors"
+                >
                   The Observatory
                 </a>
               </li>
               <li>
-                <a href="/moods" className="hover:text-accent transition-colors">
+                <a
+                  href="/moods"
+                  className="hover:text-accent transition-colors"
+                >
                   Moods
                 </a>
               </li>
@@ -35,5 +42,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
