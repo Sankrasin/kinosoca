@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-primary text-gray-100 font-sans antialiased selection:bg-accent selection:text-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+
+  a {
+    @apply text-accent hover:text-accent-hover transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 hover:shadow-neon-purple hover:border-accent/40;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-accent to-blue-600 text-white rounded-xl font-bold tracking-wide shadow-lg shadow-accent/40 hover:shadow-neon-purple hover:-translate-y-0.5 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 glass text-gray-100 rounded-xl font-bold tracking-wide hover:bg-white/10 hover:border-accent/50 hover:shadow-neon-purple hover:-translate-y-0.5 transition-all duration-300;
+  }
+
+  .badge {
+    @apply inline-flex items-center justify-center px-4 py-2 mb-2 bg-black/40 backdrop-blur-sm border border-accent/30 text-xs font-bold rounded-full tracking-wider uppercase text-accent shadow-neon-purple leading-normal;
+  }
+
+  .movie-poster {
+    @apply w-full h-auto aspect-[2/3] object-cover rounded-xl shadow-lg hover:shadow-neon-purple transition-shadow duration-300;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05050A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272A; /* Subtle dark gray */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525B; /* Slightly lighter on hover */
+}
+
+/* Loading animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
